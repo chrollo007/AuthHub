@@ -1,0 +1,16 @@
+{
+  "name": "authhub",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "auth.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"nodemon node auth.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
