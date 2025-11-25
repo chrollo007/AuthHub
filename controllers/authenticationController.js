@@ -1,3 +1,4 @@
+
 import object  from "../models/object.js";
 
 async function hello(req,res){
@@ -5,22 +6,23 @@ async function hello(req,res){
     }
 async function register(req,res){
    const {name,email,password}=req.body;
-   object.name=name;
-   object.email=email;
-   object.password=password;
+   if(object.find(obj=>obj.email===email)){
+    res.json("email already exist");
+   }
+    object.push({name,email,password});
    res.json("registered successfully")
     
 }
 async function get(req,res){
-    const arr=[object.name,object.email,object.password];
-    res.json(arr);
+   res.json(object)
 }
 async function login(req,res){
     const {email,password}=req.body;
-    if(object.email==email && object.password==password){
-            res.json("login successfully")
-    }else{
-        res.json("invalid");
+    const exist=object.find(obj=>obj.email===email)
+    if(!exist){
+            res.json("no user found")
+    }else if(object.password===password){
+        res.json("login successfully");
     }
     
 }
